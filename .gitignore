@@ -36,4 +36,9 @@ out/
 ### VS Code ###
 .vscode/
 
+### Claude temporary files ###
+.claude/
+tmpclaude-*
+nul
+
 application.yml
