@@ -2,6 +2,8 @@ plugins {
     id 'org.springframework.boot'
 }
 
+version = rootProject.findProperty('orderDomainVersion') ?: '0.0.1-SNAPSHOT'
+
 dependencies {
     implementation project(':common')
     // 도메인 간 직접 의존: User 도메인 서비스 참조
@@ -16,10 +18,12 @@ dependencies {
     compileOnly 'jakarta.persistence:jakarta.persistence-api'
 }
 
+// Library module: produces jar, not bootJar
 bootJar {
     enabled = false
 }
 
 jar {
     enabled = true
+    archiveBaseName = 'order-service'
 }

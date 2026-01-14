@@ -2,14 +2,18 @@ plugins {
 	id 'org.springframework.boot'
 }
 
+version = rootProject.findProperty('commonVersion') ?: '0.0.1-SNAPSHOT'
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter'
 }
 
+// Library module: produces jar, not bootJar
 bootJar {
 	enabled = false
 }
 
 jar {
 	enabled = true
+	archiveBaseName = 'common'
 }

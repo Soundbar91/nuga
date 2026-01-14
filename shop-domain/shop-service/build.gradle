@@ -2,6 +2,8 @@ plugins {
     id 'org.springframework.boot'
 }
 
+version = rootProject.findProperty('shopDomainVersion') ?: '0.0.1-SNAPSHOT'
+
 dependencies {
     implementation project(':common')
     // 이벤트 구독을 위한 User 도메인 의존
@@ -14,10 +16,12 @@ dependencies {
     compileOnly 'jakarta.persistence:jakarta.persistence-api'
 }
 
+// Library module: produces jar, not bootJar
 bootJar {
     enabled = false
 }
 
 jar {
     enabled = true
+    archiveBaseName = 'shop-service'
 }

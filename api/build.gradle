@@ -2,6 +2,8 @@ plugins {
 	id 'org.springframework.boot'
 }
 
+version = rootProject.findProperty('apiVersion') ?: '0.0.1-SNAPSHOT'
+
 dependencies {
 	implementation project(':common')
 	implementation project(':domain')
@@ -10,8 +12,14 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-autoconfigure'
 }
 
+// Executable module: produces bootJar
 bootJar {
 	enabled = true
+	archiveBaseName = 'api'
+	archiveFileName = "api-${version}.jar"
+
+	// Main class configuration
+	mainClass = 'com.soundbar91.api.ApiApplication'
 }
 
 jar {

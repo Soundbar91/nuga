@@ -2,6 +2,8 @@ plugins {
     id 'org.springframework.boot'
 }
 
+version = rootProject.findProperty('shopDomainVersion') ?: '0.0.1-SNAPSHOT'
+
 dependencies {
     implementation project(':common')
     implementation project(':shop-domain:shop-service')
@@ -10,10 +12,12 @@ dependencies {
     runtimeOnly 'com.h2database:h2'
 }
 
+// Library module: produces jar, not bootJar
 bootJar {
     enabled = false
 }
 
 jar {
     enabled = true
+    archiveBaseName = 'shop-infrastructure'
 }

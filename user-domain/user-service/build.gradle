@@ -2,6 +2,8 @@ plugins {
     id 'org.springframework.boot'
 }
 
+version = rootProject.findProperty('userDomainVersion') ?: '0.0.1-SNAPSHOT'
+
 dependencies {
     implementation project(':common')
     implementation 'org.springframework.boot:spring-boot-starter'
@@ -11,10 +13,12 @@ dependencies {
     compileOnly 'jakarta.persistence:jakarta.persistence-api'
 }
 
+// Library module: produces jar, not bootJar
 bootJar {
     enabled = false
 }
 
 jar {
     enabled = true
+    archiveBaseName = 'user-service'
 }
