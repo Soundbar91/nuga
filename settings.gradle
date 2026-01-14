@@ -21,3 +21,6 @@ include 'shop-domain:shop-infrastructure'
 include 'order-domain:order-api'
 include 'order-domain:order-service'
 include 'order-domain:order-infrastructure'
+
+// Phase 4: Integration Test Module
+include 'integration-test'

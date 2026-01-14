@@ -1,0 +1,55 @@
+plugins {
+    id 'org.springframework.boot'
+}
+
+version = rootProject.findProperty('projectVersion') ?: '0.0.1-SNAPSHOT'
+
+dependencies {
+    // All domain modules for integration testing
+    testImplementation project(':common')
+    testImplementation project(':domain')
+    testImplementation project(':infrastructure')
+    testImplementation project(':api')
+
+    // Phase 3 domain modules
+    testImplementation project(':user-domain:user-api')
+    testImplementation project(':user-domain:user-service')
+    testImplementation project(':user-domain:user-infrastructure')
+
+    testImplementation project(':shop-domain:shop-api')
+    testImplementation project(':shop-domain:shop-service')
+    testImplementation project(':shop-domain:shop-infrastructure')
+
+    testImplementation project(':order-domain:order-api')
+    testImplementation project(':order-domain:order-service')
+    testImplementation project(':order-domain:order-infrastructure')
+
+    // Spring Boot Test
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    // Test utilities
+    testImplementation 'org.assertj:assertj-core'
+    testRuntimeOnly 'com.h2database:h2'
+}
+
+// Integration test module: no jar needed
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = false
+}
+
+// Integration test configuration
+tasks.named('test') {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+        showExceptions true
+        showCauses true
+        showStackTraces true
+    }
+}
