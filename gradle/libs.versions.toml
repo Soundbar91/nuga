@@ -1,0 +1,46 @@
+[versions]
+# Spring
+spring-boot = "4.0.1"
+spring-dependency-management = "1.1.7"
+
+# Database
+h2 = "2.2.224"
+
+# Lombok
+lombok = "1.18.36"
+
+# Test
+junit = "5.10.2"
+assertj = "3.25.3"
+
+[libraries]
+# Spring Boot Starters
+spring-boot-starter = { group = "org.springframework.boot", name = "spring-boot-starter" }
+spring-boot-starter-web = { group = "org.springframework.boot", name = "spring-boot-starter-web" }
+spring-boot-starter-data-jpa = { group = "org.springframework.boot", name = "spring-boot-starter-data-jpa" }
+spring-boot-starter-test = { group = "org.springframework.boot", name = "spring-boot-starter-test" }
+spring-boot-autoconfigure = { group = "org.springframework.boot", name = "spring-boot-autoconfigure" }
+
+# Spring Framework
+spring-tx = { group = "org.springframework", name = "spring-tx" }
+spring-context = { group = "org.springframework", name = "spring-context" }
+
+# Jakarta
+jakarta-persistence-api = { group = "jakarta.persistence", name = "jakarta.persistence-api" }
+
+# Database
+h2 = { group = "com.h2database", name = "h2", version.ref = "h2" }
+
+# Lombok
+lombok = { group = "org.projectlombok", name = "lombok", version.ref = "lombok" }
+
+# Test
+junit-platform-launcher = { group = "org.junit.platform", name = "junit-platform-launcher" }
+
+[bundles]
+# Common test dependencies
+test = ["spring-boot-starter-test", "junit-platform-launcher"]
+
+[plugins]
+spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }
+spring-dependency-management = { id = "io.spring.dependency-management", version.ref = "spring-dependency-management" }

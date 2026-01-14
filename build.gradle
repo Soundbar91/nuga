@@ -4,16 +4,15 @@ plugins {
 	id 'io.spring.dependency-management' version '1.1.7' apply false
 }
 
-group = 'com.soundbar91'
-version = '0.0.1-SNAPSHOT'
+group = project.findProperty('projectGroup') ?: 'com.soundbar91'
+version = project.findProperty('projectVersion') ?: '0.0.1-SNAPSHOT'
 description = 'multi module architecture study'
 
 subprojects {
 	apply plugin: 'java'
 	apply plugin: 'io.spring.dependency-management'
 
-	group = 'com.soundbar91'
-	version = '0.0.1-SNAPSHOT'
+	group = rootProject.findProperty('projectGroup') ?: 'com.soundbar91'
 
 	java {
 		toolchain {
@@ -41,5 +40,16 @@ subprojects {
 
 	tasks.named('test') {
 		useJUnitPlatform()
+	}
+
+	// Jar manifest configuration for library modules
+	tasks.withType(Jar).configureEach {
+		manifest {
+			attributes(
+				'Implementation-Title': project.name,
+				'Implementation-Version': project.version,
+				'Implementation-Vendor': 'soundbar91'
+			)
+		}
 	}
 }
