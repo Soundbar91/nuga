@@ -1,0 +1,19 @@
+plugins {
+    id 'org.springframework.boot'
+}
+
+dependencies {
+    implementation project(':common')
+    implementation project(':user-domain:user-service')
+    implementation project(':user-domain:user-infrastructure')
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-autoconfigure'
+}
+
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = true
+}

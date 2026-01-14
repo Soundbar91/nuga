@@ -1,6 +1,13 @@
 rootProject.name = 'multi-module-architecture-study'
 
+// Phase 2: 계층형 모듈 (기존 유지)
 include 'common'
 include 'domain'
 include 'infrastructure'
 include 'api'
+
+// Phase 3: 도메인 중심 모듈
+// User Domain
+include 'user-domain:user-api'
+include 'user-domain:user-service'
+include 'user-domain:user-infrastructure'
