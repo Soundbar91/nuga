@@ -1,0 +1,58 @@
+# 공통 설정 (모든 환경에서 적용)
+spring:
+  application:
+    name: nuga
+
+  # 기본 프로파일 설정
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:dev}
+
+  # JPA 공통 설정
+  jpa:
+    open-in-view: false
+    properties:
+      hibernate:
+        default_batch_fetch_size: 100
+
+# 서버 공통 설정
+server:
+  shutdown: graceful
+
+# Actuator 공통 설정
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: when-authorized
+
+# 애플리케이션 커스텀 속성
+app:
+  name: ${spring.application.name}
+  version: ${APP_VERSION:0.0.1}
+  api:
+    base-url: /api/v1
+    timeout: 30000
+  cors:
+    allowed-origins: ${CORS_ALLOWED_ORIGINS:*}
+    allowed-methods: GET,POST,PUT,DELETE,OPTIONS
+    allowed-headers: "*"
+    allow-credentials: true
+    max-age: 3600
+
+# 데이터베이스 커스텀 속성
+database:
+  schema: ${DB_SCHEMA:public}
+  migration:
+    enabled: ${DB_MIGRATION_ENABLED:false}
+    locations: classpath:db/migration
+    validate-on-migrate: true
+
+# JWT 설정
+jwt:
+  secret: ${JWT_SECRET:your-256-bit-secret-key-for-development-only-change-in-production-environment}
+  access-token-expiration: ${JWT_ACCESS_EXPIRATION:3600000}  # 1시간 (ms)
+  refresh-token-expiration: ${JWT_REFRESH_EXPIRATION:604800000}  # 7일 (ms)
+  issuer: ${JWT_ISSUER:nuga}

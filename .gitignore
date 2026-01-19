@@ -41,4 +41,7 @@ out/
 tmpclaude-*
 nul
 
+# Application config (except config module)
 application.yml
+application-*.yml
+!config/src/main/resources/application*.yml
